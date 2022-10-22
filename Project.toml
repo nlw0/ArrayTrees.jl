@@ -1,0 +1,4 @@
+name = "ArrayTrees"
+uuid = "23ea18a1-3030-4bc2-8735-385f37487b21"
+authors = ["Nicolau Leal Werneck <nwerneck@gmail.com>"]
+version = "0.1.0"
