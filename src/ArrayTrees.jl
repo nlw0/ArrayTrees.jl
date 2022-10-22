@@ -10,16 +10,15 @@ struct ArrayTree{L,T,N}
 end
 
 function Base.map(f, at::ArrayTree{L,T,N}) where {L,T,N}
-    ArrayTree{L}(arraytreemap_(f, at.a, L))
+    ArrayTree{L}(arraytreemap_(f, at.a, Val(L)))
 end
 
-function arraytreemap_(f, array, L)
-    if eltype(array) == L
-        map(f, array)
-    else
-        map(array) do x
-            arraytreemap_(f, x, L)
-        end
+function arraytreemap_(f, array::Array{L,N}, ::Val{L}) where {L,N}
+    map(f, array)
+end
+function arraytreemap_(f, array::Array{T,N}, ::Val{L}) where {L,T,N}
+    map(array) do x
+        arraytreemap_(f, x, Val(L))
     end
 end
 
